@@ -12,5 +12,25 @@ if ( ! My.Utilities) {
  */
 My.Tests = {
 
+	/**
+	 * Create assert equals acceptance testing
+	 */
+	assertEquals: function(one, two) {
+    var test_status = "";
+    var color = "";
+    var output = "";
+
+    if (two === one) {
+        test_status = "PASSED";
+        color = "success";
+    } else {
+        test_status = "FAILED";
+        color = "error";
+    }
+
+    output = 'TEST {0}: "{1}" == "{2}"'.sprintf(test_status, two, one);
+
+    My.Utilities.log(output, color);
+  }
 
 };
