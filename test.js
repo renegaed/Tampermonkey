@@ -116,6 +116,11 @@ My.Test = {
 			return;
 		}
 
+		// format variables for output
+		if ( typeof expected == "undefined" ) expected = "undefined";
+		if ( typeof actual == "undefined" ) actual = "undefined";
+		if ( typeof msg == "undefined" ) msg = "undefined";
+
 		switch (name) {
 			case "assertEquals":
 				output = 'TEST {0}: "{1}" == "{2}"'.sprintf( status, expected, actual );
@@ -134,21 +139,18 @@ My.Test = {
 				break;
 
 			default:
-				// for output purposes,
-				// replace all undefined variables with the string "undefined"
-				for ( index in arguments ) {
-					if ( typeof arguments[index] == "undefined" ) {
-						arguments[index] = "undefined"
-					}
-				}
+				// don't know what test just ran,
+				// account for the rest of the arguments being undefined. to look pretty!
+				if ( typeof name == "undefined" ) name = "undefined";
+				if ( typeof result == "undefined" ) result = "undefined";
 
 				output = 'TEST {0} with Arguments: name => "{1}", result => "{2}", expected => "{3}", actual => "{4}", msg => "{5}"'.sprintf(
           status,
-          arguments[0],
-          arguments[1],
-          arguments[2],
-          arguments[3],
-          arguments[4]
+          name,
+          result,
+          expected,
+          actual,
+          msg
         );
 				break;
 		}
