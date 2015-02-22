@@ -30,6 +30,8 @@ My.Utilities = {
     } else {
         console.log("%c" + msg, "color:" + color + ";font-weight:bold; background-color: " + bgc + ";");
     }
+  }
+
 };
 
 /**
