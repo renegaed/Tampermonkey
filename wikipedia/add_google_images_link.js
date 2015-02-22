@@ -4,20 +4,21 @@
  * requires: Utilities, Tests
  */
 
+/**************************************
+ * CHANGE DEBUG TO TRUE, TO RUN TESTS
+ *************************************/
+var debug = true;
+
 $(function() {
-    /**************************************
-     * CHANGE DEBUG TO TRUE, TO RUN TESTS
-     *************************************/
-    var debug = false;
 
     // get name of wiki page
     var wiki_name = wiki_page_name();
-    if (debug) My.Utilities.log("wiki name: " + wiki_name);
+    if (debug) My.log("wiki name: " + wiki_name);
     if (debug) wiki_page_name_tests(); // run tests against wiki name determining function
 
     // generate google images link from wiki name
     var google_image_link = get_google_image_link(wiki_name);
-    if (debug) My.Utilities.log("google image link " + google_image_link);
+    if (debug) My.log("google image link " + google_image_link);
 
     // append name to target
     var target = "h1#firstHeading";
@@ -42,7 +43,13 @@ $(function() {
 var wiki_page_name = function(name) {
     // extract name from url if not provided
     // name is provided in the case of running tests
-    name = name || window.location.pathname.split('/').pop();
+    if ( typeof name == "undefined" ) {
+        var pathname = window.location.pathname;
+        if (debug) My.log("URL Pathname " + pathname);
+
+        name = pathname.substr(6);
+        if (debug) My.log("URL Pathname Substring:" + name);
+    }
 
     // replace all special characters with single space
     name = name.replace(/[^a-zA-Z0-9]/g, " ");
@@ -59,6 +66,7 @@ var wiki_page_name_tests = function() {
     My.Tests.assertEquals(wiki_page_name("Wikipedia:Policies_and_guidelines"), "Wikipedia Policies and guidelines");
     My.Tests.assertEquals(wiki_page_name("RC2"), "RC2");
     My.Tests.assertEquals(wiki_page_name("xxx"), "This Test Should FAIL");
+    My.Tests.assertEquals(wiki_page_name("Portal:Contents/Overviews"), "Portal Contents Overviews");
 }
 
 /**
