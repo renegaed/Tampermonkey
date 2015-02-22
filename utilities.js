@@ -20,7 +20,7 @@ My.log = function(msg, color) {
       default: color = color;
   }
 
-  if (typeof msg == "object"){
+  if (typeof msg == "object") {
       console.log(msg);
   } else if (typeof color == "object"){
       console.log("%c" + msg, "color: PowderBlue;font-weight:bold; background-color: RoyalBlue;");

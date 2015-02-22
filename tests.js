@@ -30,7 +30,7 @@ My.Tests = {
 
     output = 'TEST {0}: "{1}" == "{2}"'.sprintf(test_status, two, one);
 
-    My.Utilities.log(output, color);
+    My.log(output, color);
   }
 
 };
