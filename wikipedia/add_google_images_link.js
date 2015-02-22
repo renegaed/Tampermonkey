@@ -7,7 +7,7 @@
 /**************************************
  * CHANGE DEBUG TO TRUE, TO RUN TESTS
  *************************************/
-var debug = true;
+var debug = false;
 
 $(function() {
 
