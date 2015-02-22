@@ -51,6 +51,42 @@ My.Test = {
 	},
 
 	/**
+	 * Create assert true
+	 *
+	 * @param  {[mixed]} 	actual   the actual result
+	 * @param  {[type]} 	msg      (optional) output message
+	 */
+	assertTrue: function(actual, msg) {
+		var result;
+
+		if ( actual == true ) {
+			result = true;
+		} else {
+			result = false;
+		}
+
+		this._testResult( "assertTrue", result, actual, null, msg );
+	},
+
+	/**
+	 * Create assert false
+	 *
+	 * @param  {[mixed]} 	actual   the actual result
+	 * @param  {[type]} 	msg      (optional) output message
+	 */
+	assertFalse: function(actual, msg) {
+		var result;
+
+		if ( actual != true ) {
+			result = true;
+		} else {
+			result = false;
+		}
+
+		this._testResult( "assertFalse", result, actual, null, msg );
+	},
+
+	/**
 	 * Output the result of the test
 	 *
 	 * @param  {string} 	name   		the name of the test which ran
@@ -62,8 +98,8 @@ My.Test = {
 	_testResult: function( name, result, expected, actual, msg ) {
 
 		var status = "";
-    	var color = "";
-    	var output = "";
+  	var color = "";
+  	var output = "";
 
 		if ( result ) {
 			status = "PASSED";
@@ -75,7 +111,7 @@ My.Test = {
 
 		// if output message exists,
 		// display and exit
-		if (typeof msg != "undefined") {
+		if ( typeof msg != "undefined" ) {
 			My.log(msg, color);
 			return;
 		}
@@ -89,23 +125,31 @@ My.Test = {
 				output = 'TEST {0}: "{1}" != "{2}"'.sprintf( status, expected, actual );
 				break;
 
+			case "assertTrue":
+				output = 'TEST {0}: {1} is true'.sprintf( status, expected );
+				break;
+
+			case "assertFalse":
+				output = 'TEST {0}: {1} is false'.sprintf( status, expected );
+				break;
+
 			default:
 				// for output purposes,
 				// replace all undefined variables with the string "undefined"
 				for ( index in arguments ) {
 					if ( typeof arguments[index] == "undefined" ) {
-						arguments[index] = "undefined" //
+						arguments[index] = "undefined"
 					}
 				}
 
 				output = 'TEST {0} with Arguments: name => "{1}", result => "{2}", expected => "{3}", actual => "{4}", msg => "{5}"'.sprintf(
-                    status,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2],
-                    arguments[3],
-                    arguments[4]
-                );
+          status,
+          arguments[0],
+          arguments[1],
+          arguments[2],
+          arguments[3],
+          arguments[4]
+        );
 				break;
 		}
 
