@@ -4,6 +4,11 @@ window.My = window.My || {};
 /**
  * Utility Methods
  */
+My.utilities = {
+
+	//
+
+};
 
 /**
  * Add color to console.log
