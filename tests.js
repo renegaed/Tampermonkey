@@ -5,3 +5,12 @@ window.My = window.My || {};
 if ( ! My.Utilities) {
 	console.log("Unable to load Test File. Missing Dependency: Utilities file");
 }
+
+/**
+ * Tests Object
+ * @type {Object}
+ */
+My.Tests = {
+
+
+};
