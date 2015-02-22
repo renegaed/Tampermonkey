@@ -77,13 +77,49 @@ My.Test = {
 	assertFalse: function(actual, msg) {
 		var result;
 
-		if ( actual != true ) {
+		if ( actual == false ) {
 			result = true;
 		} else {
 			result = false;
 		}
 
 		this._testResult( "assertFalse", result, actual, null, msg );
+	},
+
+	/**
+	 * Create expect true, STRICT comparison
+	 *
+	 * @param  {[mixed]} 	actual   the actual result
+	 * @param  {[type]} 	msg      (optional) output message
+	 */
+	expectTrue: function(actual, msg) {
+		var result;
+
+		if ( actual === true ) {
+			result = true;
+		} else {
+			result = false;
+		}
+
+		this._testResult( "expectTrue", result, actual, null, msg );
+	},
+
+	/**
+	 * Create expect false, STRICT comparison
+	 *
+	 * @param  {[mixed]} 	actual   the actual result
+	 * @param  {[type]} 	msg      (optional) output message
+	 */
+	expectFalse: function(actual, msg) {
+		var result;
+
+		if ( actual === false ) {
+			result = true;
+		} else {
+			result = false;
+		}
+
+		this._testResult( "expectFalse", result, actual, null, msg );
 	},
 
 	/**
@@ -117,6 +153,7 @@ My.Test = {
 		}
 
 		// format variables for output
+		// assume 'name' and 'result' are defined for now
 		if ( typeof expected == "undefined" ) expected = "undefined";
 		if ( typeof actual == "undefined" ) actual = "undefined";
 		if ( typeof msg == "undefined" ) msg = "undefined";
@@ -136,6 +173,14 @@ My.Test = {
 
 			case "assertFalse":
 				output = 'TEST {0}: {1} is false'.sprintf( status, expected );
+				break;
+
+			case "expectTrue":
+				output = 'TEST {0}: {1} is STRICTLY true'.sprintf( status, expected );
+				break;
+
+			case "expectFalse":
+				output = 'TEST {0}: {1} is STRICTLY false'.sprintf( status, expected );
 				break;
 
 			default:
