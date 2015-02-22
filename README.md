@@ -1,2 +1,3 @@
 # Tampermonkey
-Tampermonkey Scripts
+Tampermonkey Utility & Test Scripts
+For inclusion in multiple Tampermonkey scripts
