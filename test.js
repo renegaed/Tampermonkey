@@ -263,11 +263,11 @@ My.Test = {
 
 				// error message mismatch
 				if ( ! obj.result ) {
-					output = 'TEST FAILED: "{0}" does not equal "{1}"'.sprintf( obj.actual, obj.expected );
+					output = 'TEST FAILED: error "{0}" does not equal "{1}"'.sprintf( obj.actual, obj.expected );
 					break;
 				}
 
-				output = 'TEST PASSED: "{0}" equals "{1}"'.sprintf( obj.actual, obj.expected );
+				output = 'TEST PASSED: error "{0}" equals "{1}"'.sprintf( obj.actual, obj.expected );
 				break;
 
 			default:
