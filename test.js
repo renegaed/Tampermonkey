@@ -16,7 +16,7 @@ My.Test = {
 	Collection: function( msg, callback ) {
 		My.log( msg, "info" );
 		callback();
-	}
+	},
 
 	/**
 	 * Create assert equals test
