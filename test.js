@@ -145,13 +145,6 @@ My.Test = {
 			color = "error";
 		}
 
-		// if output message exists,
-		// display and exit
-		if ( typeof msg != "undefined" ) {
-			My.log(msg, color);
-			return;
-		}
-
 		// format variables for output
 		// assume 'name' and 'result' are defined for now
 		if ( typeof expected == "undefined" ) expected = "undefined";
@@ -198,6 +191,11 @@ My.Test = {
           msg
         );
 				break;
+		}
+
+		// appned output message if it exists
+		if ( typeof msg != "undefined" ) {
+			output .= ' (' . msg . ')';
 		}
 
 		My.log(output, color);
