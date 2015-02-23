@@ -275,7 +275,7 @@ My.Test = {
 					status,
 					name,
 					obj
-					);
+				);
 				break;
 		}
 
