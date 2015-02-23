@@ -19,7 +19,7 @@ My.Test = {
 	 * @param  {[type]} 	expected the expected result
 	 * @param  {[type]} 	msg      (optional) output message
 	 */
-	assertEquals: function(actual, expected, msg) {
+	assertEquals: function( actual, expected, msg ) {
 		var result;
 
 		if ( actual === expected ) {
@@ -38,7 +38,7 @@ My.Test = {
 	 * @param  {[type]} 	expected the expected result
 	 * @param  {[type]} 	msg      (optional) output message
 	 */
-	assertNotEquals: function(actual, expected, msg) {
+	assertNotEquals: function( actual, expected, msg ) {
 		var result;
 
 		if ( actual !== expected ) {
@@ -56,7 +56,7 @@ My.Test = {
 	 * @param  {[mixed]} 	actual   the actual result
 	 * @param  {[type]} 	msg      (optional) output message
 	 */
-	assertTrue: function(actual, msg) {
+	assertTrue: function( actual, msg ) {
 		var result;
 
 		if ( actual == true ) {
@@ -74,7 +74,7 @@ My.Test = {
 	 * @param  {[mixed]} 	actual   the actual result
 	 * @param  {[type]} 	msg      (optional) output message
 	 */
-	assertFalse: function(actual, msg) {
+	assertFalse: function( actual, msg ) {
 		var result;
 
 		if ( actual == false ) {
@@ -92,7 +92,7 @@ My.Test = {
 	 * @param  {[mixed]} 	actual   the actual result
 	 * @param  {[type]} 	msg      (optional) output message
 	 */
-	expectTrue: function(actual, msg) {
+	expectTrue: function( actual, msg ) {
 		var result;
 
 		if ( actual === true ) {
@@ -110,7 +110,7 @@ My.Test = {
 	 * @param  {[mixed]} 	actual   the actual result
 	 * @param  {[type]} 	msg      (optional) output message
 	 */
-	expectFalse: function(actual, msg) {
+	expectFalse: function( actual, msg ) {
 		var result;
 
 		if ( actual === false ) {
