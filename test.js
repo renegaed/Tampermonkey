@@ -195,7 +195,7 @@ My.Test = {
 
 		// appned output message if it exists
 		if ( typeof msg != "undefined" ) {
-			output .= ' (' . msg . ')';
+			output += ' (' . msg . ')';
 		}
 
 		My.log(output, color);
