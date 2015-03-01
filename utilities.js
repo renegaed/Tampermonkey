@@ -55,25 +55,25 @@ window.My = window.My || {};
 
     // if querystring has already been extracted
     // simply return that
-    if ( typeof this._querystring !== "undefined" && this._querystring !== null )) {
-      return this._querystring;
+    if ( typeof this._querystring !== "undefined" && this._querystring !== null ) {
+      return this._querystring[name];
     }
 
     var match,
       pl     = /\+/g,  // Regex for replacing addition symbol with a space
       search = /([^&=]+)=?([^&]*)/g,
-      decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+      decode = function (s) { return decodeURIComponent( s.replace( pl, " " )); },
       query  = window.location.search.substring(1);
 
       this._querystring = {};
-      while (match = search.exec(query)) {
-        this._querystring[decode(match[1])] = decode(match[2]);
+      while ( match = search.exec(query) ) {
+        this._querystring[ decode( match[1] ) ] = decode( match[2] );
       }
 
-      return this._querystring;
+      return this._querystring[name];
     },
 
-  /**
+ /**
    * replace/update/remove the querystring
    * 
    * 
@@ -83,14 +83,14 @@ window.My = window.My || {};
    *                        not supplying a value will remove the parameter
    * @param {string}  url   (optional) the url to parse, defaults to window.location
    */
-  UpdateQueryString: function( key, value, url ) {
+   updateQueryString: function( key, value, url ) {
     if ( ! url ) {
       url = window.location.href;
     }
 
-    var re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi"),
+    var re = new RegExp( "([?&])" + key + "=.*?(&|#|$)(.*)", "gi" );
     var hash;
-
+    
     if ( re.test( url ) ) {
       if ( typeof value !== "undefined" && value !== null ) {
         return url.replace(re, '$1' + key + "=" + value + '$2$3');
