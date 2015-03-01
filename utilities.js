@@ -41,6 +41,8 @@ window.My = window.My || {};
  */
  My.Url = {
 
+  _querystring,
+
   /**
    * returns the query string by name
    *
@@ -50,18 +52,25 @@ window.My = window.My || {};
    * @param  {string}
    */
   getQuerystring: function( name ) {
+
+    // if querystring has already been extracted
+    // simply return that
+    if ( typeof this._querystring !== "undefined") {
+      return this._querystring;
+    }
+
     var match,
       pl     = /\+/g,  // Regex for replacing addition symbol with a space
       search = /([^&=]+)=?([^&]*)/g,
       decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
       query  = window.location.search.substring(1);
 
-    urlParams = {};
+    this._querystring = {};
     while (match = search.exec(query)) {
-      urlParams[decode(match[1])] = decode(match[2]);
+      this._querystring[decode(match[1])] = decode(match[2]);
     }
 
-    return urlParams;
+    return this._querystring;
   },
 
 };
