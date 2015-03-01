@@ -41,7 +41,7 @@ window.My = window.My || {};
  */
  My.Url = {
 
-  _querystring,
+  _querystring: false,
 
   /**
    * returns the query string by name
@@ -55,7 +55,7 @@ window.My = window.My || {};
 
     // if querystring has already been extracted
     // simply return that
-    if ( typeof this._querystring !== "undefined") {
+    if (this._querystring) {
       return this._querystring;
     }
 
