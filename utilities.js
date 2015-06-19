@@ -178,14 +178,14 @@ window.My = window.My || {};
  * Continuously loop through css object until you reach a string
  * the string is assumed to be the final css property value
  * 
- * @return object   obj   the css object
- * @return int   count   the number of times the loop has run
+ * @param object   obj   the css object
+ * @param int   count   the number of times the loop has run
  */
  My._InjectCSSLoopSelector = function( obj, count ) {
   css = "";
 
   // expect an object
-  if ( typeof obj != "object" ) {
+  if ( count == 1 && typeof obj != "object" ) {
     throw "expected first parameter to be an object";
   }
 
