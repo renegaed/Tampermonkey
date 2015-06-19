@@ -194,7 +194,7 @@ window.My = window.My || {};
       continue;
     }
 
-    // first nesting must be n object
+    // first nesting must be an object
     if ( count == 1 && typeof obj[val] != "object" ) {
       throw "expected css property '" + obj[val] + "'  to be an object";
     }
