@@ -205,7 +205,7 @@ window.My = window.My || {};
       css += "{";
       css += My._InjectCSSLoopSelector( obj[val], ++count );
       css += "}";
-    // finally exausted all objects
+    // finally exausted all objects, assume we have reached a "property: value"
     } else {
       css += val;
       css += ":";
