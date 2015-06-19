@@ -144,7 +144,50 @@ window.My = window.My || {};
   });
  };
 
-/**
+/** 
+ * Continuously loop through css object until you reach a string
+ * the string is assumed to be the final css property value
+ * 
+ * @return object   obj   the css object
+ * @return int   count   the number of times the loop has run
+ */
+ My._InjectCSSLoopSelector = function( obj, count ) {
+  css = "";
+
+  // expect an object
+  if ( typeof obj != "object" ) {
+    throw "expected first parameter to be an object";
+  }
+
+  for ( val in obj ) {
+    if ( ! obj.hasOwnProperty( val ) ) {
+      continue;
+    }
+
+    // first nesting must be n object
+    if ( count == 1 && typeof obj[val] != "object" ) {
+      throw "expected css property 'color:blue;'  to be an object";
+    }
+
+    // loop through value recursively until we run out of objects
+    if ( typeof obj[val] == "object" ) {
+      css += val;
+      css += "{";
+      css += My._InjectCSSLoopSelector( obj[val], ++count );
+      css += "}";
+    // finally exausted all objects
+    } else {
+      css += val;
+      css += ":";
+      css += obj[val];
+      css += ";";
+    }
+  }
+
+  return css;
+}
+
+ /**
  * Add CSS to a page using object notation
  * 
  * @param object  cssObj              a nested css object
@@ -152,6 +195,36 @@ window.My = window.My || {};
  * @return void
  */
  My.InjectCSS = function( cssObj, returnGeneratedCSS ) {
+  var css = "";
+
+  // returnGeneratedCSS default value false 
+  if ( typeof returnGeneratedCSS == "undefined" ) {
+    returnGeneratedCSS = false;
+  }
+
+  css = My._InjectCSSLoopSelector( cssObj, 1 );
+
+  // if asking to return the generated css, simply do so
+  if ( returnGeneratedCSS ) {
+    return css;
+  }
+
+  // css needs to be injected into the page
+  var style = document.createElement( "style" );
+  style.type = "text/css";
+  style.innerHTML = css;
+  document.getElementsByTagName( "head" )[0].appendChild( style );
+
+ }
+
+/**
+ * Add CSS to a page using object notation
+ * 
+ * @param object  cssObj              a nested css object
+ * @param boolean returnGeneratedCSS  whether to return the generated css, instead of adding it to the page
+ * @return void
+ */
+ My.InjectCSSOld = function( cssObj, returnGeneratedCSS ) {
   var css = "";
 
   // expect an object

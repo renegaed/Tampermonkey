@@ -57,4 +57,16 @@ My.Test.Collection( "My.InjectCSS Tests", function() {
 		, "mulitple selectors with css properties"
 	);
 
+	css = My.InjectCSS({
+	    "@media only screen and (max-width : 700px)": {
+				"#mw-navigation": {
+					"display": "none"
+				}
+			}
+	}, true );
+	My.Test.assertEquals( "@media only screen and (max-width : 700px){#mw-navigation{display:none;}}"
+		, css
+		, "media queries"
+	);
+
 });
