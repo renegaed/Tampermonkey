@@ -144,7 +144,37 @@ window.My = window.My || {};
   });
  };
 
-/** 
+ /**
+ * Add CSS to a page using object notation
+ * 
+ * @param object  cssObj              a nested css object
+ * @param boolean returnGeneratedCSS  whether to return the generated css, instead of adding it to the page
+ * @return void
+ */
+ My.InjectCSS = function( cssObj, returnGeneratedCSS ) {
+  var css = "";
+
+  // returnGeneratedCSS default value false 
+  if ( typeof returnGeneratedCSS == "undefined" ) {
+    returnGeneratedCSS = false;
+  }
+
+  css = My._InjectCSSLoopSelector( cssObj, 1 );
+
+  // if asking to return the generated css, simply do so
+  if ( returnGeneratedCSS ) {
+    return css;
+  }
+
+  // css needs to be injected into the page
+  var style = document.createElement( "style" );
+  style.type = "text/css";
+  style.innerHTML = css;
+  document.getElementsByTagName( "head" )[0].appendChild( style );
+
+ }
+
+ /** 
  * Continuously loop through css object until you reach a string
  * the string is assumed to be the final css property value
  * 
@@ -186,33 +216,3 @@ window.My = window.My || {};
 
   return css;
 }
-
- /**
- * Add CSS to a page using object notation
- * 
- * @param object  cssObj              a nested css object
- * @param boolean returnGeneratedCSS  whether to return the generated css, instead of adding it to the page
- * @return void
- */
- My.InjectCSS = function( cssObj, returnGeneratedCSS ) {
-  var css = "";
-
-  // returnGeneratedCSS default value false 
-  if ( typeof returnGeneratedCSS == "undefined" ) {
-    returnGeneratedCSS = false;
-  }
-
-  css = My._InjectCSSLoopSelector( cssObj, 1 );
-
-  // if asking to return the generated css, simply do so
-  if ( returnGeneratedCSS ) {
-    return css;
-  }
-
-  // css needs to be injected into the page
-  var style = document.createElement( "style" );
-  style.type = "text/css";
-  style.innerHTML = css;
-  document.getElementsByTagName( "head" )[0].appendChild( style );
-
- }
