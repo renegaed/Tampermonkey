@@ -196,7 +196,7 @@ window.My = window.My || {};
 
     // first nesting must be n object
     if ( count == 1 && typeof obj[val] != "object" ) {
-      throw "expected css property 'color:blue;'  to be an object";
+      throw "expected css property '" + obj[val] + "'  to be an object";
     }
 
     // loop through value recursively until we run out of objects
