@@ -41,23 +41,22 @@ window.My = window.My || {};
  */
  My.Url = {
 
-  _querystring: null,
-
   /**
    * returns the query string by name
    *
    * usage: urlParams["name"]
-   * usage: "empty" in urlParams --> true/false
+   * usage: if ( empty( urlParams["name"] ) ) --> true/false
    * 
-   * @param  {string}
+   * @param { string } name   the string to search for
+   * @param { string } url    the url to search through, defaults to the current page url
    */
-   getQueryString: function( name ) {
+   getQueryString: function( name, url ) {
 
-    // if querystring has already been extracted
-    // simply return that
-    if ( typeof this._querystring !== "undefined" && this._querystring !== null ) {
-      return this._querystring[name];
+    if ( url.count ) {
+      url = url.substring( url.indexOf('?') + 1 );
     }
+
+    var querystring = {};
 
     var match,
       pl     = /\+/g,  // Regex for replacing addition symbol with a space
@@ -65,12 +64,12 @@ window.My = window.My || {};
       decode = function (s) { return decodeURIComponent( s.replace( pl, " " )); },
       query  = window.location.search.substring(1);
 
-      this._querystring = {};
+      
       while ( match = search.exec(query) ) {
-        this._querystring[ decode( match[1] ) ] = decode( match[2] );
+        querystring[ decode( match[1] ) ] = decode( match[2] );
       }
 
-      return this._querystring[name];
+      return querystring[name];
     },
 
  /**
