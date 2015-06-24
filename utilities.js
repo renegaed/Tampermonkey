@@ -54,6 +54,8 @@ window.My = window.My || {};
 
     if ( url ) {
       url = url.substring( url.indexOf('?') + 1 );
+    } else {
+      url = window.location.search.substring(1);
     }
 
     var querystring = {};
@@ -62,7 +64,7 @@ window.My = window.My || {};
       pl     = /\+/g,  // Regex for replacing addition symbol with a space
       search = /([^&=]+)=?([^&]*)/g,
       decode = function (s) { return decodeURIComponent( s.replace( pl, " " )); },
-      query  = window.location.search.substring(1);
+      query  = url;
 
       
       while ( match = search.exec(query) ) {
