@@ -52,7 +52,7 @@ window.My = window.My || {};
    */
    getQueryString: function( name, url ) {
 
-    if ( url.count ) {
+    if ( url ) {
       url = url.substring( url.indexOf('?') + 1 );
     }
 
