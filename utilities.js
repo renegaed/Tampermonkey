@@ -217,3 +217,20 @@ window.My = window.My || {};
 
   return css;
 }
+
+/**
+ * Copy text to the clipboard
+ * 
+ * @param  string text the text to copy to the clipboard
+ * @return null
+ */
+My.copyToClipboard( text ) {
+  var body = document.body;
+  var copyFrom = document.createElement( "textarea" );
+  
+  copyFrom.textContent = text;
+  body.appendChild( copyFrom );
+  copyFrom.select();
+  document.execCommand( "copy" );
+  body.removeChild( copyFrom );
+}
