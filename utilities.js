@@ -224,7 +224,7 @@ window.My = window.My || {};
  * @param  string text the text to copy to the clipboard
  * @return null
  */
-My.copyToClipboard( text ) {
+My.copyToClipboard = function( text ) {
   var body = document.body;
   var copyFrom = document.createElement( "textarea" );
   
